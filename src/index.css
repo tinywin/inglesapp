@@ -29,7 +29,13 @@
 @layer base {
   body {
     @apply bg-brand-bg text-brand-text font-sans antialiased;
-    font-size: 18px;
+    font-size: 16px;
+  }
+  
+  @media (min-width: 768px) {
+    body {
+      font-size: 18px;
+    }
   }
   
   h1, h2, h3, h4 {
@@ -38,23 +44,23 @@
 }
 
 .accessible-card {
-  @apply bg-slate-900 rounded-3xl border border-slate-800 p-8 shadow-editorial relative overflow-hidden backdrop-blur-sm bg-slate-900/80;
+  @apply bg-slate-900 rounded-2xl md:rounded-3xl border border-slate-800 p-6 md:p-8 shadow-editorial relative overflow-hidden backdrop-blur-sm bg-slate-900/80;
 }
 
 .bento-grid {
-  @apply grid grid-cols-1 md:grid-cols-12 gap-6;
+  @apply grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6;
 }
 
 .bento-card {
-  @apply bg-slate-900 rounded-[2.5rem] border-2 border-slate-800 p-8 shadow-editorial transition-all hover:shadow-2xl hover:-translate-y-1;
+  @apply bg-slate-900 rounded-3xl md:rounded-[2.5rem] border-2 border-slate-800 p-6 md:p-8 shadow-editorial transition-all hover:shadow-2xl hover:-translate-y-1;
 }
 
 .primary-button {
-  @apply bg-white text-slate-950 rounded-2xl px-10 py-4 font-black transition-all active:scale-95 shadow-xl;
+  @apply bg-white text-slate-950 rounded-xl md:rounded-2xl px-6 md:px-10 py-3 md:py-4 font-black transition-all active:scale-95 shadow-xl;
 }
 
 .accent-button {
-  @apply bg-brand-accent text-white rounded-2xl px-10 py-4 font-black transition-all active:scale-95 shadow-xl hover:brightness-110;
+  @apply bg-brand-accent text-white rounded-xl md:rounded-2xl px-6 md:px-10 py-3 md:py-4 font-black transition-all active:scale-95 shadow-xl hover:brightness-110;
 }
 
 .secondary-button {

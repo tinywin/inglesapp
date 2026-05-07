@@ -69,32 +69,32 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
   const lessonToDisplay = currentLesson || viewingHistoryLesson;
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12 relative">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 md:py-12 relative">
       {/* Decorative Step Number */}
-      <div className="absolute top-0 right-0 serif text-8xl md:text-[200px] leading-none font-bold text-slate-400/20 dark:text-slate-600/10 select-none -z-10 mt-12 pr-6 md:pr-12 lg:pr-0">
+      <div className="absolute top-0 right-0 serif text-6xl md:text-[200px] leading-none font-bold text-slate-400/20 dark:text-slate-600/10 select-none -z-10 mt-8 md:mt-12 pr-4 md:pr-12 lg:pr-0">
         {lessonToDisplay ? "02" : "01"}
       </div>
 
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16 relative z-10">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10 md:mb-16 relative z-10">
         <div>
-          <div className="text-[10px] uppercase tracking-[0.4em] font-black text-brand-secondary dark:text-brand-accent mb-4">
+          <div className="text-[10px] uppercase tracking-[0.4em] font-black text-brand-secondary dark:text-brand-accent mb-3 md:mb-4">
             {new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}
           </div>
-          <h1 className="text-4xl sm:text-6xl md:text-7xl text-slate-950 dark:text-white serif italic leading-tight tracking-tighter">Bom dia, {profile.name}!</h1>
-          <p className="text-slate-700 dark:text-slate-300 font-sans text-lg md:text-xl mt-4 max-w-lg leading-relaxed font-black">
+          <h1 className="text-3xl sm:text-6xl md:text-7xl text-slate-950 dark:text-white serif italic leading-tight tracking-tighter">Bom dia, {profile.name}!</h1>
+          <p className="text-slate-700 dark:text-slate-300 font-sans text-base md:text-xl mt-3 md:mt-4 max-w-lg leading-relaxed font-black">
             Pronto para expandir seus horizontes hoje?
           </p>
         </div>
-        <div className="flex items-center gap-4 bg-white dark:bg-slate-800 p-3 rounded-3xl border-2 border-slate-200 dark:border-slate-700 shadow-md">
-          <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-slate-600 flex items-center justify-center text-brand-primary dark:text-white font-black text-2xl shadow-sm border-2 border-slate-200 dark:border-slate-500">
+        <div className="flex items-center gap-3 md:gap-4 bg-white dark:bg-slate-800 p-2 md:p-3 rounded-2xl md:rounded-3xl border-2 border-slate-200 dark:border-slate-700 shadow-md">
+          <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-slate-100 dark:bg-slate-600 flex items-center justify-center text-brand-primary dark:text-white font-black text-xl md:text-2xl shadow-sm border-2 border-slate-200 dark:border-slate-500">
             {profile.name[0]}
           </div>
-          <div className="hidden sm:block pr-4">
-            <div className="text-xs font-black tracking-widest uppercase text-brand-primary dark:text-white">Explorador</div>
+          <div className="pr-2 md:pr-4">
+            <div className="text-[10px] md:text-xs font-black tracking-widest uppercase text-brand-primary dark:text-white">Explorador</div>
             <button 
               onClick={onReset}
-              className="text-[10px] bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded font-black uppercase tracking-widest text-slate-800 dark:text-slate-200 hover:text-brand-accent transition-colors"
+              className="text-[9px] md:text-[10px] bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded font-black uppercase tracking-widest text-slate-800 dark:text-slate-200 hover:text-brand-accent transition-colors"
             >
               Reiniciar
             </button>
@@ -158,11 +158,11 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
                <div className={`bg-brand-accent h-full transition-all duration-1000 ${viewingHistoryLesson ? 'w-full' : 'w-1/4'}`}></div>
             </div>
             
-            <div className="p-12">
-              <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-16 px-4">
+            <div className="p-6 md:p-12">
+              <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-10 md:mb-16">
                 <div className="flex-1">
                 <div className="text-[10px] uppercase tracking-[0.4em] font-black text-brand-accent mb-4">Módulo de Estudo</div>
-                  <h2 className="text-4xl sm:text-5xl md:text-6xl text-slate-900 dark:text-white serif italic mb-4 leading-tight tracking-tighter">{lessonToDisplay.title}</h2>
+                  <h2 className="text-3xl sm:text-5xl md:text-6xl text-slate-900 dark:text-white serif italic mb-4 leading-tight tracking-tighter">{lessonToDisplay.title}</h2>
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-brand-accent rounded-xl text-[10px] uppercase tracking-widest font-black border-2 border-slate-300 dark:border-slate-700">
                     {lessonToDisplay.encouragement || "Keep going!"}
                   </div>
@@ -172,58 +172,58 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
                     setCurrentLesson(null);
                     setViewingHistoryLesson(null);
                   }}
-                  className="px-8 py-3 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl text-[10px] uppercase tracking-widest font-black border-2 border-slate-300 dark:border-slate-600 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all font-sans"
+                  className="w-full md:w-auto px-8 py-3 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl text-[10px] uppercase tracking-widest font-black border-2 border-slate-300 dark:border-slate-600 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all font-sans"
                 >
                   Close
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 gap-12 px-4">
-                <section className="space-y-16">
-                  <div className="font-sans text-2xl leading-relaxed text-brand-text max-w-3xl font-black">
+              <div className="grid grid-cols-1 gap-12">
+                <section className="space-y-12 md:space-y-16">
+                  <div className="font-sans text-xl md:text-2xl leading-relaxed text-brand-text max-w-3xl font-black">
                     {lessonToDisplay.intro}
                   </div>
 
-                  <div className="bg-slate-100 dark:bg-slate-950 rounded-[3rem] p-12 border-2 border-slate-300 dark:border-slate-800 relative group overflow-hidden">
+                  <div className="bg-slate-100 dark:bg-slate-950 rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 border-2 border-slate-300 dark:border-slate-800 relative group overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white dark:bg-slate-800 opacity-60 dark:opacity-20 rounded-bl-full translate-x-12 -translate-y-12"></div>
                     
                     {lessonToDisplay.imagePrompt && (
-                      <div className="mb-10 rounded-[2.5rem] overflow-hidden border-4 border-white dark:border-slate-800 shadow-xl aspect-video relative group/img">
+                      <div className="mb-10 rounded-3xl md:rounded-[2.5rem] overflow-hidden border-4 border-white dark:border-slate-800 shadow-xl aspect-video relative group/img">
                         <img 
-                           src={`https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop`} // Fallback base, in real app we'd search
+                           src={`https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop`} // Fallback base
                            className="w-full h-full object-cover grayscale brightness-50 group-hover/img:grayscale-0 group-hover/img:brightness-100 transition-all duration-1000" 
                            alt={lessonToDisplay.imagePrompt}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
-                        <div className="absolute bottom-6 left-6 right-6">
-                           <div className="text-[10px] uppercase tracking-[0.3em] font-black text-white/80 mb-1">Visual Fragment</div>
-                           <div className="text-white font-serif italic text-sm">{lessonToDisplay.imagePrompt}</div>
+                        <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 md:right-6">
+                           <div className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-black text-white/80 mb-1">Visual Fragment</div>
+                           <div className="text-white font-serif italic text-xs md:text-sm">{lessonToDisplay.imagePrompt}</div>
                         </div>
                       </div>
                     )}
 
-                    <div className="relative z-10 space-y-10">
+                    <div className="relative z-10 space-y-8 md:space-y-10">
                       <div>
                         <div className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-secondary dark:text-brand-secondary mb-6 flex items-center gap-2">
                            English Fragment
                         </div>
                         <div className="space-y-8">
-                          <p className="text-3xl sm:text-5xl md:text-6xl serif text-slate-900 dark:text-white leading-[1.1] tracking-tighter italic">
+                          <p className="text-2xl sm:text-5xl md:text-6xl serif text-slate-900 dark:text-white leading-[1.1] tracking-tighter italic">
                             "{lessonToDisplay.story}"
                           </p>
                           <button 
                             onClick={() => speak(lessonToDisplay.story)}
                             disabled={isSpeaking}
-                            className="accent-button !py-4 !px-8 flex items-center gap-3 text-sm"
+                            className="accent-button !py-4 !px-8 flex items-center justify-center gap-3 text-sm w-full md:w-auto"
                           >
                             <Mic size={20} className={isSpeaking ? "animate-pulse" : ""} />
                             {isSpeaking ? "Speaking..." : "Pronunciation"}
                           </button>
                         </div>
                       </div>
-                      <div className="pt-10 border-t-2 border-slate-400 dark:border-slate-600">
+                      <div className="pt-8 md:pt-10 border-t-2 border-slate-400 dark:border-slate-600">
                         <div className="text-[10px] uppercase tracking-[0.3em] font-black text-slate-500 dark:text-slate-400 mb-4">Tradução</div>
-                        <p className="text-2xl text-slate-900 dark:text-slate-200 font-sans font-black leading-relaxed italic underline decoration-brand-accent/30 decoration-4">
+                        <p className="text-xl md:text-2xl text-slate-900 dark:text-slate-200 font-sans font-black leading-relaxed italic underline decoration-brand-accent/30 decoration-4">
                           {lessonToDisplay.translation}
                         </p>
                       </div>
@@ -288,27 +288,27 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
 
                    {/* Songs Section */}
                    {lessonToDisplay.songLyric && (
-                     <div className="bg-brand-accent/5 dark:bg-slate-900 p-12 rounded-[3.5rem] border-2 border-brand-accent/20 dark:border-slate-800 relative group">
-                        <div className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-accent mb-8 flex items-center gap-2">
+                     <div className="bg-brand-accent/5 dark:bg-slate-900 p-6 md:p-12 rounded-[2rem] md:rounded-[3.5rem] border-2 border-brand-accent/20 dark:border-slate-800 relative group">
+                        <div className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-accent mb-6 md:mb-8 flex items-center gap-2">
                            <Music size={14} /> Músicas que Conectam
                         </div>
                         <div className="space-y-6">
-                           <div className="font-serif italic text-4xl leading-tight text-slate-950 dark:text-white tracking-tighter">
+                           <div className="font-serif italic text-2xl md:text-4xl leading-tight text-slate-950 dark:text-white tracking-tighter">
                               "{lessonToDisplay.songLyric.english}"
                            </div>
-                           <div className="text-xl text-slate-600 dark:text-slate-400 font-black italic">
+                           <div className="text-lg md:text-xl text-slate-600 dark:text-slate-400 font-black italic">
                               {lessonToDisplay.songLyric.portuguese}
                            </div>
-                           <div className="pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                              <div className="flex flex-col">
-                                 <span className="text-xs uppercase tracking-widest font-black text-brand-accent">{lessonToDisplay.songLyric.artist}</span>
-                                 <span className="text-lg font-black text-slate-900 dark:text-white">{lessonToDisplay.songLyric.songTitle}</span>
+                           <div className="pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
+                              <div className="flex flex-col min-w-0">
+                                 <span className="text-[9px] md:text-xs uppercase tracking-widest font-black text-brand-accent truncate">{lessonToDisplay.songLyric.artist}</span>
+                                 <span className="text-base md:text-lg font-black text-slate-900 dark:text-white truncate">{lessonToDisplay.songLyric.songTitle}</span>
                               </div>
                               <button 
                                 onClick={() => speak(lessonToDisplay.songLyric?.english || '')}
-                                className="w-16 h-16 bg-brand-accent text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all"
+                                className="w-12 h-12 md:w-16 md:h-16 bg-brand-accent text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all flex-shrink-0"
                               >
-                                <Volume2 size={24} />
+                                <Volume2 size={20} className="md:w-6 md:h-6" />
                               </button>
                            </div>
                         </div>
@@ -316,9 +316,9 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
                    )}
 
                   {/* Games & Insights Section */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                     {lessonToDisplay.quiz && (
-                      <div className="bg-white dark:bg-slate-900 p-12 rounded-[3.5rem] border-2 border-slate-200 dark:border-slate-800 shadow-2xl relative overflow-hidden flex flex-col justify-between min-h-[400px]">
+                      <div className="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border-2 border-slate-200 dark:border-slate-800 shadow-2xl relative overflow-hidden flex flex-col justify-between min-h-[350px] md:min-h-[400px]">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 dark:bg-slate-800/50 rounded-bl-full translate-x-8 -translate-y-8"></div>
                         <div className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-accent mb-8">Skill Check</div>
                         <LessonQuiz quiz={lessonToDisplay.quiz} />
@@ -326,7 +326,7 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
                     )}
 
                     {lessonToDisplay.scramble && (
-                      <div className="bg-slate-100 dark:bg-slate-900 p-12 rounded-[3.5rem] border-2 border-slate-300 dark:border-slate-800 shadow-xl flex flex-col justify-between min-h-[400px]">
+                      <div className="bg-slate-100 dark:bg-slate-900 p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border-2 border-slate-300 dark:border-slate-800 shadow-xl flex flex-col justify-between min-h-[350px] md:min-h-[400px]">
                         <div className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-text mb-8">Sentence Construct</div>
                         <SentenceScramble data={lessonToDisplay.scramble} />
                       </div>
@@ -334,14 +334,14 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
                   </div>
 
                   {lessonToDisplay.funFact && (
-                    <div className="bg-brand-secondary/10 dark:bg-brand-secondary/20 p-12 rounded-[3rem] border border-brand-secondary/20 dark:border-brand-secondary/30 relative overflow-hidden group">
-                      <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center text-center md:text-left">
-                        <div className="w-24 h-24 bg-brand-secondary text-white rounded-3xl flex items-center justify-center flex-shrink-0 animate-bounce">
-                          <Book size={40} />
+                    <div className="bg-brand-secondary/10 dark:bg-brand-secondary/20 p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-brand-secondary/20 dark:border-brand-secondary/30 relative overflow-hidden group">
+                      <div className="relative z-10 flex flex-col md:flex-row gap-6 md:gap-8 items-center text-center md:text-left">
+                        <div className="w-20 h-20 md:w-24 md:h-24 bg-brand-secondary text-white rounded-2xl md:rounded-3xl flex items-center justify-center flex-shrink-0 animate-bounce">
+                          <Book size={32} />
                         </div>
                         <div>
-                          <div className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-secondary mb-4">Curiosidade do Guia</div>
-                          <p className="text-3xl text-brand-primary serif italic leading-tight">
+                          <div className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-secondary mb-3 md:mb-4">Curiosidade do Guia</div>
+                          <p className="text-2xl md:text-3xl text-brand-primary serif italic leading-tight">
                             "{lessonToDisplay.funFact}"
                           </p>
                         </div>
@@ -351,17 +351,17 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
 
                   {/* Recommendations */}
                   {lessonToDisplay.recommendations && lessonToDisplay.recommendations.length > 0 && (
-                    <div className="space-y-8">
+                    <div className="space-y-6 md:space-y-8">
                       <div className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-secondary mb-1">Dica do Guia</div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                         {lessonToDisplay.recommendations.map((rec, idx) => (
-                          <div key={idx} className="bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-700 flex items-center gap-6 hover:border-brand-secondary transition-all hover:shadow-lg">
-                            <div className="w-16 h-16 bg-brand-secondary/10 text-brand-secondary rounded-2xl flex items-center justify-center flex-shrink-0">
+                          <div key={idx} className="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl md:rounded-[2.5rem] border border-slate-100 dark:border-slate-700 flex items-center gap-4 md:gap-6 hover:border-brand-secondary transition-all hover:shadow-lg">
+                            <div className="w-14 h-14 md:w-16 md:h-16 bg-brand-secondary/10 text-brand-secondary rounded-2xl flex items-center justify-center flex-shrink-0">
                                <RecommendationIcon type={rec.type} />
                             </div>
                             <div>
                                <div className="text-[9px] uppercase tracking-[0.2em] font-black text-slate-700 dark:text-slate-300 mb-1">{rec.type}</div>
-                               <div className="text-xl font-black text-brand-primary leading-tight">{rec.title}</div>
+                               <div className="text-lg md:text-xl font-black text-brand-primary leading-tight">{rec.title}</div>
                             </div>
                           </div>
                         ))}
@@ -371,10 +371,10 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
                 </section>
               </div>
 
-              <div className="mt-20 px-4 pb-12 flex flex-col md:flex-row gap-4">
+              <div className="mt-12 md:mt-20 pb-8 md:pb-12 flex flex-col md:flex-row gap-4">
                 <button 
                   onClick={finishLesson}
-                  className="accent-button !py-6 text-xl tracking-widest uppercase font-black w-full shadow-2xl shadow-brand-accent/30"
+                  className="accent-button !py-4 md:!py-6 text-lg md:text-xl tracking-widest uppercase font-black w-full shadow-2xl shadow-brand-accent/30"
                 >
                   {viewingHistoryLesson ? "Back to HQ" : "Complete & Save to Album"}
                 </button>
@@ -389,24 +389,24 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
             className="space-y-12"
           >
             {/* Tabs */}
-            <div className="flex gap-4 p-2 bg-slate-100 dark:bg-slate-900 rounded-[2rem] w-fit border-2 border-slate-200 dark:border-slate-800">
+            <div className="flex flex-wrap gap-2 md:gap-4 p-1.5 md:p-2 bg-slate-100 dark:bg-slate-900 rounded-[1.5rem] md:rounded-[2rem] w-full md:w-fit border-2 border-slate-200 dark:border-slate-800">
                <button 
                  onClick={() => setActiveTab('daily')}
-                 className={`px-8 py-3 rounded-2xl text-[10px] uppercase tracking-[0.2em] font-black transition-all ${activeTab === 'daily' ? 'bg-brand-accent text-white shadow-lg' : 'text-slate-600 dark:text-slate-400'}`}
+                 className={`flex-1 md:flex-none px-4 md:px-8 py-3 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black transition-all ${activeTab === 'daily' ? 'bg-brand-accent text-white shadow-lg' : 'text-slate-600 dark:text-slate-400'}`}
                >
-                 Painel Diário
+                 Diário
                </button>
                <button 
                  onClick={() => setActiveTab('history')}
-                 className={`px-8 py-3 rounded-2xl text-[10px] uppercase tracking-[0.2em] font-black transition-all ${activeTab === 'history' ? 'bg-brand-accent text-white shadow-lg' : 'text-slate-600 dark:text-slate-400'}`}
+                 className={`flex-1 md:flex-none px-4 md:px-8 py-3 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black transition-all ${activeTab === 'history' ? 'bg-brand-accent text-white shadow-lg' : 'text-slate-600 dark:text-slate-400'}`}
                >
                  Álbum
                </button>
                <button 
                  onClick={() => setActiveTab('dictionary')}
-                 className={`px-8 py-3 rounded-2xl text-[10px] uppercase tracking-[0.2em] font-black transition-all ${activeTab === 'dictionary' ? 'bg-brand-accent text-white shadow-lg' : 'text-slate-600 dark:text-slate-400'}`}
+                 className={`flex-1 md:flex-none px-4 md:px-8 py-3 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black transition-all ${activeTab === 'dictionary' ? 'bg-brand-accent text-white shadow-lg' : 'text-slate-600 dark:text-slate-400'}`}
                >
-                 Dicionário Sentimental
+                 Dicionário
                </button>
             </div>
 
@@ -414,25 +414,25 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
               <div className="bento-grid">
                 {/* Desafio do Dia */}
                 <div className="md:col-span-12">
-                   <div className="bg-brand-accent rounded-[3.5rem] p-12 text-white relative overflow-hidden shadow-2xl group">
+                   <div className="bg-brand-accent rounded-[2.5rem] md:rounded-[3.5rem] p-8 md:p-12 text-white relative overflow-hidden shadow-2xl group">
                       <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -translate-x-12 -translate-y-24 blur-3xl"></div>
-                      <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+                      <div className="relative z-10 flex flex-col items-start md:flex-row md:items-center justify-between gap-8 md:gap-12">
                          <div className="flex-1 space-y-4">
                             <div className="flex items-center gap-3">
-                               <div className="p-3 bg-white/20 rounded-2xl">
-                                  <Trophy size={32} />
-                               </div>
+                               <div className="p-3 bg-white/20 rounded-xl md:rounded-2xl">
+                                  <Trophy className="w-6 h-6 md:w-8 md:h-8" />
+                                </div>
                                <span className="text-[10px] uppercase tracking-[0.5em] font-black opacity-80">Desafio do Dia</span>
                             </div>
-                            <h2 className="text-4xl sm:text-5xl serif italic leading-tight">Narrar um momento especial da sua semana em inglês.</h2>
-                            <p className="text-xl font-black text-white/90">Complete esse desafio para ganhar um selo de explorador veterano!</p>
+                            <h2 className="text-3xl md:text-5xl serif italic leading-tight">Narrar um momento especial da sua semana em inglês.</h2>
+                            <p className="text-lg md:text-xl font-black text-white/90">Complete esse desafio para ganhar um selo de explorador veterano!</p>
                          </div>
                          <button 
                            onClick={() => {
                              setShowScenarioInput(true);
                              onCompleteChallenge();
                            }}
-                           className={`px-12 py-6 rounded-3xl font-black text-xl transition-all shadow-2xl flex items-center gap-3 ${profile.dailyChallengeDone ? 'bg-white/20 text-white cursor-default' : 'bg-white text-brand-accent hover:scale-105 active:scale-95'}`}
+                           className={`w-full md:w-auto px-8 md:px-12 py-4 md:py-6 rounded-2xl md:rounded-3xl font-black text-lg md:text-xl transition-all shadow-2xl flex items-center justify-center gap-3 ${profile.dailyChallengeDone ? 'bg-white/20 text-white cursor-default' : 'bg-white text-brand-accent hover:scale-105 active:scale-95'}`}
                          >
                            {profile.dailyChallengeDone ? <><Sparkles /> Desafio Concluído</> : <><Plus /> Aceitar Desafio</>}
                          </button>
@@ -442,43 +442,43 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
 
                 {/* Onde paramos */}
                 <div className="md:col-span-8 flex flex-col gap-6">
-                  <div className="bento-card flex-1 bg-[#020617] text-white border-none relative overflow-hidden group shadow-2xl">
+                  <div className="bento-card flex-1 bg-[#020617] text-white border-none relative overflow-hidden group shadow-2xl min-h-[300px] md:min-h-auto">
                     <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-40 grayscale transition-transform duration-700 group-hover:scale-110"></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent"></div>
                     <div className="relative z-10 h-full flex flex-col justify-between">
                       <div>
-                        <div className="text-[10px] uppercase tracking-[0.5em] font-black text-brand-accent mb-8 drop-shadow-lg">Play</div>
-                        <h3 className="text-4xl sm:text-5xl md:text-6xl serif italic mb-8 leading-none tracking-tight text-white drop-shadow-2xl">Continuar<br/>de onde parei</h3>
+                        <div className="text-[10px] uppercase tracking-[0.5em] font-black text-brand-accent mb-4 md:mb-8 drop-shadow-lg">Play</div>
+                        <h3 className="text-3xl sm:text-5xl md:text-6xl serif italic mb-6 md:mb-8 leading-none tracking-tight text-white drop-shadow-2xl">Continuar<br/>de onde parei</h3>
                       </div>
                       <button 
                         onClick={() => startLesson()}
                         disabled={isLoading}
-                        className="bg-brand-accent text-white rounded-2xl px-12 py-6 text-xl md:text-2xl font-black transition-all active:scale-95 shadow-2xl shadow-brand-accent/40 hover:scale-105 border-2 border-white/20"
+                        className="bg-brand-accent text-white rounded-2xl px-10 md:px-12 py-4 md:py-6 text-lg md:text-2xl font-black transition-all active:scale-95 shadow-2xl shadow-brand-accent/40 hover:scale-105 border-2 border-white/20"
                       >
-                        {isLoading ? <Loader2 className="animate-spin" /> : "Retomar Lição"}
+                        {isLoading ? <Loader2 className="animate-spin mx-auto" /> : "Retomar Lição"}
                       </button>
                     </div>
                   </div>
                 </div>
 
                 <div className="md:col-span-4 flex flex-col gap-6">
-                  <div className="bento-card bg-slate-900 border-2 border-slate-800 text-white flex flex-col gap-6 min-h-[400px]">
+                  <div className="bento-card bg-slate-900 border-2 border-slate-800 text-white flex flex-col gap-6 min-h-[300px] md:min-h-[400px]">
                     <div className="text-[10px] uppercase tracking-[0.2em] font-black text-slate-400">Categorias Rápidas</div>
-                    <div className="flex flex-col gap-4">
-                      <button onClick={() => startLesson("Saudações e Apresentações")} className="w-full py-5 bg-slate-800 rounded-2xl text-white font-black hover:bg-brand-accent dark:hover:text-slate-950 transition-all border-2 border-slate-700 text-left px-6 shadow-sm">Saudações</button>
-                      <button onClick={() => startLesson("Comidas e Restaurante")} className="w-full py-5 bg-slate-800 rounded-2xl text-white font-black hover:bg-brand-accent dark:hover:text-slate-950 transition-all border-2 border-slate-700 text-left px-6 shadow-sm">Comidas</button>
-                      <button onClick={() => startLesson("Viagens e Passeios")} className="w-full py-5 bg-slate-800 rounded-2xl text-white font-black hover:bg-brand-accent dark:hover:text-slate-950 transition-all border-2 border-slate-700 text-left px-6 shadow-sm">Viagens</button>
+                    <div className="flex flex-col gap-3">
+                      <button onClick={() => startLesson("Saudações e Apresentações")} className="w-full py-4 bg-slate-800 rounded-xl text-white font-black hover:bg-brand-accent dark:hover:text-slate-950 transition-all border-2 border-slate-700 text-left px-5 shadow-sm">Saudações</button>
+                      <button onClick={() => startLesson("Comidas e Restaurante")} className="w-full py-4 bg-slate-800 rounded-xl text-white font-black hover:bg-brand-accent dark:hover:text-slate-950 transition-all border-2 border-slate-700 text-left px-5 shadow-sm">Comidas</button>
+                      <button onClick={() => startLesson("Viagens e Passeios")} className="w-full py-4 bg-slate-800 rounded-xl text-white font-black hover:bg-brand-accent dark:hover:text-slate-950 transition-all border-2 border-slate-700 text-left px-5 shadow-sm">Viagens</button>
                     </div>
                   </div>
                 </div>
 
                 {/* Narrar Momento */}
                 <div className="md:col-span-12">
-                  <div className="bento-card bg-slate-800 border-2 border-slate-700 text-white flex flex-col md:flex-row gap-12 items-center justify-between p-12">
+                  <div className="bento-card bg-slate-800 border-2 border-slate-700 text-white flex flex-col md:flex-row gap-8 md:gap-12 items-center justify-between p-8 md:p-12">
                     <div className="flex-1">
-                       <div className="text-[10px] uppercase tracking-[0.2em] font-black text-brand-accent mb-6">Input Criativo</div>
-                       <h3 className="text-4xl lg:text-5xl serif italic mb-4 leading-tight">O que você está vivendo agora?</h3>
-                       <p className="text-slate-400 font-sans font-black text-lg mb-0 leading-relaxed max-w-xl">
+                       <div className="text-[10px] uppercase tracking-[0.2em] font-black text-brand-accent mb-4 md:mb-6">Input Criativo</div>
+                       <h3 className="text-3xl md:text-5xl serif italic mb-4 leading-tight">O que você está vivendo agora?</h3>
+                       <p className="text-slate-400 font-sans font-black text-base md:text-lg mb-0 leading-relaxed max-w-xl">
                          Transforme seu cotidiano em aprendizado real. Jogos, filmes, animes ou hobbies — conte para o Paulo e comece uma lição personalizada.
                        </p>
                     </div>
@@ -487,9 +487,9 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
                       {!showScenarioInput ? (
                         <button 
                           onClick={() => setShowScenarioInput(true)}
-                          className="bg-white text-slate-950 rounded-[2rem] px-12 py-6 text-xl font-black shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 w-full"
+                          className="bg-white text-slate-950 rounded-2xl md:rounded-[2rem] px-10 md:px-12 py-4 md:py-6 text-lg md:text-xl font-black shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 w-full"
                         >
-                          <Plus size={28} />
+                          <Plus size={24} />
                           Narrar Momento
                         </button>
                       ) : (
@@ -498,20 +498,20 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
                              autoFocus
                              value={customScenario}
                              onChange={(e) => setCustomScenario(e.target.value)}
-                             placeholder="Ex: Estou preparando um jantar especial e..."
-                             className="w-full bg-slate-900 text-white rounded-3xl p-8 border-2 border-slate-700 focus:border-brand-accent transition-colors min-h-[150px] outline-none"
+                             placeholder="Ex: Preparando um jantar especial..."
+                             className="w-full bg-slate-900 text-white rounded-2xl md:rounded-3xl p-6 md:p-8 border-2 border-slate-700 focus:border-brand-accent transition-colors min-h-[120px] outline-none text-base"
                            />
                            <div className="flex gap-4">
                               <button 
                                 onClick={() => startLesson(customScenario)}
                                 disabled={isLoading || !customScenario}
-                                className="flex-1 bg-brand-accent text-white py-4 rounded-2xl font-black hover:scale-105 transition-all"
+                                className="flex-1 bg-brand-accent text-white py-4 rounded-xl font-black hover:scale-105 transition-all"
                               >
-                                {isLoading ? <Loader2 className="animate-spin mx-auto" /> : "Gerar Lição"}
+                                {isLoading ? <Loader2 className="animate-spin mx-auto" /> : "Gerar"}
                               </button>
                               <button 
                                 onClick={() => setShowScenarioInput(false)}
-                                className="px-6 text-slate-400 uppercase text-[10px] font-black"
+                                className="px-4 text-slate-400 uppercase text-[10px] font-black"
                               >
                                 Cancelar
                               </button>
