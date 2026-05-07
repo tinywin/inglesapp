@@ -1,20 +1,38 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Elo — O Inglês que Conecta com Você
 
-# Run and deploy your AI Studio app
+**Elo** é uma plataforma experimental de aprendizado de inglês que ignora as lições genéricas de livros didáticos em favor de um aprendizado profundamente pessoal e contextual. 
 
-This contains everything you need to run your app locally.
+Guiado pelo **Paulo** (o seu guia de IA), o app transforma seus hobbies, experiências de vida e momentos do dia a dia em lições personalizadas, conectando o idioma às coisas que você realmente ama.
 
-View your app in AI Studio: https://ai.studio/apps/4c1a81c5-3187-43bd-934c-dff44bbc564f
+## 🚀 Funcionalidades Principais
 
-## Run Locally
+- **Aprendizado por Contexto Real:** O Paulo cria lições baseadas em *quem você é*. Se você gosta de RPG, música dos anos 80 ou culinária, seus exemplos e vocabulário virão desses mundos.
+- **Input Criativo (Narrar Momento):** Está vivendo algo agora? Digite o que está acontecendo e o Elo gera uma lição instantânea para você aprender a narrar esse momento em inglês.
+- **Dicionário Sentimental:** Salve palavras que têm um significado especial para você. Não é apenas uma lista de tradução, é um álbum de palavras que agora fazem parte da sua história.
+- **Álbum de Memórias:** Revise suas lições passadas a qualquer momento. Suas conquistas ficam guardadas como fragmentos de progresso.
+- **Desafios Diários:** Mantenha a constância com desafios que provocam sua criatividade e recompensam sua evolução.
+- **Imersão Cultural:** O app integra referências a músicas, filmes e animes que fazem parte do seu gosto pessoal.
 
-**Prerequisites:**  Node.js
+## 🛠️ Tecnologias Utilizadas
 
+- **React 18** com **Vite** para uma experiência rápida e fluida.
+- **Tailwind CSS** para um design editorial e minimalista.
+- **Gemini API** para geração de conteúdo pedagógico ultra-personalizado.
+- **Motion (Framer Motion)** para animações orgânicas e transições de página.
+- **Lucide React** para iconografia moderna.
+- **Browser Speech Synthesis** para prática de pronúncia.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 🎨 Filosofia de Design
+
+O Elo utiliza um estilo **Editorial/Bento-Grid**, priorizando a tipografia e o espaço negativo para criar uma experiência de estudo que não parece trabalho, mas sim a leitura de uma revista premium ou um diário de descobertas.
+
+## 📖 Como Usar
+
+1. **Onboarding:** Ao entrar, conte ao Paulo um pouco sobre você (seus interesses, sua idade e sua história).
+2. **Dashboard:** No painel principal, você pode aceitar o desafio do dia ou narrar um momento específico da sua rotina.
+3. **Estudo:** Cada lição traz áudio, tradução, curiosidades culturais e pequenos jogos (Quiz e Sentence Scramble) para fixar o conteúdo.
+4. **Álbum:** Tudo o que você aprende é salvo no seu álbum pessoal para consulta futura.
+
+---
+
+*Desenvolvido para transformar o "ter que aprender" em "querer descobrir".*
