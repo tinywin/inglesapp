@@ -21,23 +21,42 @@ export default function App() {
 
   const [messages, setMessages] = useState<Message[]>([]);
 
-  // Load from local storage
+  // Load from local storage and check for new day
   useEffect(() => {
     const saved = localStorage.getItem("elo_profile");
     if (saved) {
-      const parsed = JSON.parse(saved);
+      const parsed = JSON.parse(saved) as UserProfile;
       if (!parsed.age) {
         localStorage.removeItem("elo_profile");
         setProfile(null);
       } else {
+        // Reset daily challenge if it's a new day
+        const today = new Date().toLocaleDateString();
+        if (parsed.lastChallengeDate !== today) {
+          parsed.dailyChallengeDone = false;
+        }
         setProfile(parsed);
       }
     }
   }, []);
 
   const handleProfileComplete = (newProfile: UserProfile) => {
-    setProfile({ ...newProfile, history: newProfile.history || [] });
-    localStorage.setItem("elo_profile", JSON.stringify({ ...newProfile, history: newProfile.history || [] }));
+    const today = new Date().toLocaleDateString();
+    const profileWithHistory = { 
+      ...newProfile, 
+      history: newProfile.history || [],
+      dailyChallengeDone: false,
+      lastChallengeDate: today
+    };
+    setProfile(profileWithHistory);
+    localStorage.setItem("elo_profile", JSON.stringify(profileWithHistory));
+  };
+
+  const handleUpdateProfile = (updatedData: Partial<UserProfile>) => {
+    if (!profile) return;
+    const newProfile = { ...profile, ...updatedData };
+    setProfile(newProfile);
+    localStorage.setItem("elo_profile", JSON.stringify(newProfile));
   };
 
   const saveLessonToHistory = (lesson: any) => {
@@ -117,6 +136,7 @@ export default function App() {
               onSaveWord={handleSaveWord}
               onRemoveWord={handleRemoveWord}
               onCompleteChallenge={handleCompleteChallenge}
+              onUpdateProfile={handleUpdateProfile}
             />
           </motion.div>
         )}

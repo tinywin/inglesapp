@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { UserProfile, LessonContent } from "../types";
 import { generateCustomLesson } from "../services/geminiService";
-import { Book, Plus, Loader2, LogOut, ChevronRight, Volume2, Music, Film, Video, Mic2, Mic, Heart, Trophy, Sparkles, BookMarked, Trash2, FastForward } from "lucide-react";
+import { Book, Plus, Loader2, LogOut, ChevronRight, Volume2, Music, Film, Video, Mic2, Mic, Heart, Trophy, Sparkles, BookMarked, Trash2, FastForward, Settings, User, Save } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 interface DashboardProps {
@@ -11,18 +11,25 @@ interface DashboardProps {
   onSaveWord: (word: string, meaning: string) => void;
   onRemoveWord: (word: string) => void;
   onCompleteChallenge: () => void;
+  onUpdateProfile: (data: Partial<UserProfile>) => void;
 }
 
-export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemoveWord, onCompleteChallenge }: DashboardProps) {
+export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemoveWord, onCompleteChallenge, onUpdateProfile }: DashboardProps) {
   const [currentLesson, setCurrentLesson] = useState<LessonContent | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState<'daily' | 'history' | 'dictionary'>('daily');
+  const [activeTab, setActiveTab] = useState<'daily' | 'history' | 'dictionary' | 'profile'>('daily');
   const [customScenario, setCustomScenario] = useState("");
   const [showScenarioInput, setShowScenarioInput] = useState(false);
   const [viewingHistoryLesson, setViewingHistoryLesson] = useState<LessonContent | null>(null);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [flashcardsMode, setFlashcardsMode] = useState(false);
+
+  // Profile editing state
+  const [editName, setEditName] = useState(profile.name);
+  const [editLifeExperience, setEditLifeExperience] = useState(profile.lifeExperience);
+  const [editInterests, setEditInterests] = useState<string[]>(profile.interests);
+  const [isSavingProfile, setIsSavingProfile] = useState(false);
 
   const speak = (text: string) => {
     if ('speechSynthesis' in window) {
@@ -49,6 +56,21 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleUpdateProfile = () => {
+    setIsSavingProfile(true);
+    // Simulate slight delay for polish
+    setTimeout(() => {
+      onUpdateProfile({
+        name: editName,
+        lifeExperience: editLifeExperience,
+        interests: editInterests
+      });
+      setIsSavingProfile(false);
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 2000);
+    }, 500);
   };
 
   const finishLesson = () => {
@@ -92,12 +114,7 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
           </div>
           <div className="pr-2 md:pr-4">
             <div className="text-[10px] md:text-xs font-black tracking-widest uppercase text-brand-primary dark:text-white">Explorador</div>
-            <button 
-              onClick={onReset}
-              className="text-[9px] md:text-[10px] bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded font-black uppercase tracking-widest text-slate-800 dark:text-slate-200 hover:text-brand-accent transition-colors"
-            >
-              Reiniciar
-            </button>
+            <div className="text-[9px] md:text-[10px] text-slate-500 dark:text-slate-400 font-black uppercase tracking-widest">Nível 1</div>
           </div>
         </div>
       </div>
@@ -408,6 +425,12 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
                >
                  Dicionário
                </button>
+               <button 
+                 onClick={() => setActiveTab('profile')}
+                 className={`flex-1 md:flex-none px-4 md:px-8 py-3 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black transition-all ${activeTab === 'profile' ? 'bg-brand-accent text-white shadow-lg' : 'text-slate-600 dark:text-slate-400'}`}
+               >
+                 <Settings className="w-3 h-3 md:w-4 md:h-4" />
+               </button>
             </div>
 
             {activeTab === 'daily' && (
@@ -429,8 +452,10 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
                          </div>
                          <button 
                            onClick={() => {
-                             setShowScenarioInput(true);
-                             onCompleteChallenge();
+                             if (!profile.dailyChallengeDone) {
+                               setCustomScenario("Desafio: Narrar um momento especial da minha semana.");
+                               setShowScenarioInput(true);
+                             }
                            }}
                            className={`w-full md:w-auto px-8 md:px-12 py-4 md:py-6 rounded-2xl md:rounded-3xl font-black text-lg md:text-xl transition-all shadow-2xl flex items-center justify-center gap-3 ${profile.dailyChallengeDone ? 'bg-white/20 text-white cursor-default' : 'bg-white text-brand-accent hover:scale-105 active:scale-95'}`}
                          >
@@ -503,7 +528,12 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
                            />
                            <div className="flex gap-4">
                               <button 
-                                onClick={() => startLesson(customScenario)}
+                                onClick={() => {
+                                  if (customScenario.includes("Desafio:")) {
+                                    onCompleteChallenge();
+                                  }
+                                  startLesson(customScenario);
+                                }}
                                 disabled={isLoading || !customScenario}
                                 className="flex-1 bg-brand-accent text-white py-4 rounded-xl font-black hover:scale-105 transition-all"
                               >
@@ -611,6 +641,109 @@ export function Dashboard({ profile, onReset, onSaveLesson, onSaveWord, onRemove
                  </div>
               </motion.div>
             )}
+            {activeTab === 'profile' && (
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-12 pb-20">
+                 <div className="flex flex-col gap-1">
+                    <div className="text-[10px] uppercase tracking-[0.5em] font-black text-brand-accent">Meu Perfil</div>
+                    <h2 className="text-5xl serif italic text-white tracking-tighter">Personalização</h2>
+                    <p className="text-slate-400 font-sans font-black text-lg max-w-2xl mt-4">Mude como o Paulo interage com você e quais temas aparecem nas lições.</p>
+                 </div>
+
+                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    {/* Name & Bio */}
+                    <div className="space-y-8">
+                       <div className="bento-card bg-slate-900 border-2 border-slate-800 p-8 space-y-6">
+                          <div>
+                            <label className="text-[10px] uppercase tracking-widest font-black text-slate-500 mb-3 block">Nome</label>
+                            <div className="flex items-center gap-4 bg-slate-950 p-4 rounded-2xl border-2 border-slate-800 focus-within:border-brand-accent transition-all">
+                               <User className="text-slate-600" size={20} />
+                               <input 
+                                 type="text" 
+                                 value={editName}
+                                 onChange={(e) => setEditName(e.target.value)}
+                                 className="bg-transparent border-none outline-none text-xl w-full font-serif italic text-white"
+                               />
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="text-[10px] uppercase tracking-widest font-black text-slate-500 mb-3 block">Sua História</label>
+                            <textarea 
+                              value={editLifeExperience}
+                              onChange={(e) => setEditLifeExperience(e.target.value)}
+                              className="w-full bg-slate-950 p-6 rounded-2xl min-h-[150px] outline-none border-2 border-slate-800 text-lg font-sans font-black text-white focus:border-brand-accent transition-all resize-none"
+                            />
+                          </div>
+                       </div>
+
+                       <button 
+                         onClick={handleUpdateProfile}
+                         disabled={isSavingProfile}
+                         className="primary-button w-full flex items-center justify-center gap-3 !py-6 text-xl"
+                       >
+                         {isSavingProfile ? <Loader2 className="animate-spin" /> : <><Save size={24} /> Salvar Alterações</>}
+                       </button>
+
+                       <button 
+                         onClick={onReset}
+                         className="w-full flex items-center justify-center gap-2 py-4 text-[10px] font-black uppercase tracking-[0.3em] text-slate-600 hover:text-red-500 transition-colors"
+                       >
+                         <LogOut size={14} /> Reiniciar Minha Jornada
+                       </button>
+                    </div>
+
+                    {/* Interests */}
+                    <div className="space-y-6">
+                       <div className="bento-card bg-slate-950 border-2 border-slate-800 p-8">
+                          <label className="text-[10px] uppercase tracking-widest font-black text-slate-500 mb-6 block">Seus Interesses</label>
+                          <div className="flex flex-wrap gap-2">
+                             {['Games', 'Música', 'Filmes', 'Tecnologia', 'Culinária', 'Viagens', 'Esportes', 'Arte', 'Livros', 'Animes', 'Cultura Pop', 'História', 'Negócios', 'Natureza'].map(interest => {
+                               const isSelected = editInterests.includes(interest);
+                               return (
+                                 <button 
+                                   key={interest}
+                                   onClick={() => {
+                                     if (isSelected) setEditInterests(editInterests.filter(i => i !== interest));
+                                     else setEditInterests([...editInterests, interest]);
+                                   }}
+                                   className={`px-4 py-2 rounded-xl border-2 text-xs font-black transition-all ${isSelected ? 'bg-brand-secondary border-brand-secondary text-slate-950' : 'border-slate-800 text-slate-400 hover:border-slate-600'}`}
+                                 >
+                                   {interest}
+                                 </button>
+                               );
+                             })}
+                          </div>
+                       </div>
+
+                       <div className="bg-brand-accent/10 border-2 border-brand-accent/20 rounded-[2.5rem] p-8">
+                          <h4 className="text-xl serif italic text-brand-accent mb-2">Por que isso importa?</h4>
+                          <p className="text-slate-400 text-sm font-black leading-relaxed">
+                            O Paulo usa cada detalhe do seu perfil para criar lições que não pareçam estudo, mas sim uma conversa sobre a sua vida.
+                          </p>
+                       </div>
+                    </div>
+                 </div>
+              </motion.div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showSuccess && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: -20 }}
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100] bg-brand-accent text-white p-12 rounded-[4rem] shadow-2xl flex flex-col items-center gap-6"
+          >
+            <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center animate-bounce">
+              <Trophy size={40} />
+            </div>
+            <div className="text-center">
+              <div className="text-4xl serif italic mb-2">Excelente!</div>
+              <p className="font-black uppercase tracking-widest text-sm opacity-80">Progresso Salvo com Sucesso</p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
