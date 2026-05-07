@@ -1,6 +1,8 @@
-# Elo — O Inglês que Conecta com Você
+# Elo — Protótipo Experimental de Inglês
 
-**Elo** é uma plataforma experimental de aprendizado de inglês que ignora as lições genéricas de livros didáticos em favor de um aprendizado profundamente pessoal e contextual. 
+> **Nota:** Este é um projeto de teste e prova de conceito. Não é um produto comercial finalizado.
+
+**Elo** é um experimento de aprendizado de inglês que ignora as lições genéricas de livros didáticos em favor de um aprendizado profundamente pessoal e contextual. 
 
 Guiado pelo **Paulo** (o seu guia de IA), o app transforma seus hobbies, experiências de vida e momentos do dia a dia em lições personalizadas, conectando o idioma às coisas que você realmente ama.
 

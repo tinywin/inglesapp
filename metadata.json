@@ -1,6 +1,6 @@
 {
-  "name": "Elo de Inglês",
-  "description": "Uma plataforma de inglês ultra-personalizada por IA que conecta o idioma às suas paixões, história de vida e rotina diária.",
+  "name": "Elo",
+  "description": "Um protótipo experimental de aprendizado de inglês personalizado, criado como teste de integração com IA e design focado em contexto.",
   "requestFramePermissions": [],
   "majorCapabilities": []
 }
